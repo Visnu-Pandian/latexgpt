@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { readFile } from "fs/promises";
 import { join } from "path";
+import os from "os";
 
-const downloadsDir = join(process.cwd(), "tmp", "downloads");
+const downloadsDir = join(os.tmpdir(), "downloads");
 
 export async function POST(request: NextRequest) {
   try {

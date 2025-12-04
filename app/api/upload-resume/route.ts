@@ -2,10 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { writeFile, mkdir, readFile } from "fs/promises";
 import { join } from "path";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import os from "os";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
-const uploadsDir = join(process.cwd(), "tmp", "uploads");
-const downloadsDir = join(process.cwd(), "tmp", "downloads");
+const uploadsDir = join(os.tmpdir(), "uploads");
+const downloadsDir = join(os.tmpdir(), "downloads");
 
 // Helper function to clean LaTeX content (remove markdown code fence backticks)
 const cleanLatexContent = (content: string): string => {

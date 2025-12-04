@@ -2,11 +2,12 @@
 
 import { rm, mkdir } from "fs/promises";
 import { join } from "path";
+import os from "os";
 
 export async function cleanupDirs() {
   try {
-    const uploadsDir = join(process.cwd(), "tmp", "uploads");
-    const downloadsDir = join(process.cwd(), "tmp", "downloads");
+    const uploadsDir = join(os.tmpdir(), "uploads");
+    const downloadsDir = join(os.tmpdir(), "downloads");
 
     await mkdir(uploadsDir, { recursive: true });
     await mkdir(downloadsDir, { recursive: true });

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { writeFile, mkdir, readFile } from "fs/promises";
+import mammoth from "mammoth";
 import { join } from "path";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
@@ -76,14 +77,13 @@ export async function POST(request: NextRequest) {
         text: textContent,
       };
     } else if (file.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
-      // For DOCX, we'll need to extract text first
-      // For now, send as binary
-      const base64Data = Buffer.from(buffer).toString("base64");
+      // Extracting raw text from docx file
+      const arrayBuffer = await file.arrayBuffer();
+      const buffer = Buffer.from(arrayBuffer);
+      const result = await mammoth.extractRawText({ buffer: buffer });
+
       fileContent = {
-        inlineData: {
-          mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          data: base64Data,
-        },
+          text: result.value,
       };
     }
 

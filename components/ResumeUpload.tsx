@@ -16,7 +16,7 @@ export default function ResumeUpload({ onResumeUpload }: ResumeUploadProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isDragActive, setIsDragActive] = useState(false);
 
-  const MAX_FILE_SIZE = 20 * 1024 * 1024; // 20MB
+  const MAX_FILE_SIZE = 5 * 1024 * 1024; // 20MB
   const ALLOWED_TYPES = [
     "text/plain",
     "application/pdf",
@@ -31,7 +31,7 @@ export default function ResumeUpload({ onResumeUpload }: ResumeUploadProps) {
       // Validate file size
       if (file.size > MAX_FILE_SIZE) {
         throw new Error(
-          `File size exceeds 20MB limit. Your file is ${(file.size / 1024 / 1024).toFixed(2)}MB`
+          `File size exceeds 5MB limit. Your file is ${(file.size / 1024 / 1024).toFixed(2)}MB`
         );
       }
 
@@ -58,7 +58,7 @@ export default function ResumeUpload({ onResumeUpload }: ResumeUploadProps) {
 
       const data = await response.json();
 
-      setFileName(data.texFileName);
+      setFileName(data.fileName);
       // Pass the resume content (DOCX version) to the chat and the full timestamped tex filename
       onResumeUpload(data.resumeContent, data.texFileName);
     } catch (err) {
@@ -180,7 +180,7 @@ export default function ResumeUpload({ onResumeUpload }: ResumeUploadProps) {
       )}
 
       <p className="text-xs text-blue-300">
-        Supported formats: .txt, .pdf, .docx (Max 20MB)
+        Supported formats: .txt, .pdf, .docx (Max 5MB)
       </p>
     </Card>
   );

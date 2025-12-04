@@ -44,7 +44,7 @@ export default function ResumeDownload({
       const url = URL.createObjectURL(blob);
       const element = document.createElement("a");
       element.href = url;
-      element.download = `enhanced_${fileName || "resume"}.tex`;
+      element.download = `enhanced_${fileName || "resume.tex"}`;
       document.body.appendChild(element);
       element.click();
       document.body.removeChild(element);

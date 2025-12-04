@@ -1,0 +1,30 @@
+new folder
+    lower case name, no spaces
+
+terminal
+    npx create-next-app@latest .
+    npx shadcn@latest init
+
+pocketbase.io
+    download and extract into workspace
+
+terminal
+    npm run dev
+
+new terminal for db
+    ./pocketbase serve
+
+ui.shadcn
+    npx shadcn@latest add <component>
+    copy-paste the code of the snippet into the .tsx file in components/ui/
+
+imports
+    import { XYZ } from "@components/ui/XYZ"
+
+using imports
+    <XYZ />
+
+editing elements
+    className = red-bgm-300
+    can be changed to 500 for a darker color
+    doesn't need secondary .css file

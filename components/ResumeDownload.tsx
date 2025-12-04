@@ -22,11 +22,25 @@ export default function ResumeDownload({
 
     try {
       setDownloading("latex");
+      const response = await fetch("/api/read-resume-file", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fileName: fileName,
+        }),
+      });
 
-      // FIX
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || "Failed to read LaTeX file");
+      }
+
+      const data = await response.json();
 
       // Download the LaTeX file
-      const blob = new Blob([resumeContent], { type: "text/plain" });
+      const blob = new Blob([data.content], { type: "text/plain" });
       const url = URL.createObjectURL(blob);
       const element = document.createElement("a");
       element.href = url;
@@ -48,13 +62,29 @@ export default function ResumeDownload({
 
     try {
       setDownloading("copy");
+      const response = await fetch("/api/read-resume-file", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fileName: fileName,
+        }),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || "Failed to read LaTeX file");
+      }
+
+      const data = await response.json();
 
       if (navigator?.clipboard?.writeText) {
-        await navigator.clipboard.writeText(resumeContent);
+        await navigator.clipboard.writeText(data.content);
       } else {
         // Fallback for older browsers or environments without clipboard API
         const textarea = document.createElement("textarea");
-        textarea.value = resumeContent
+        textarea.value = data.content;
         document.body.appendChild(textarea);
         textarea.select();
         document.execCommand("copy");

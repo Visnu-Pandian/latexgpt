@@ -24,11 +24,11 @@ export async function POST(request: NextRequest) {
     // Read Jake's template to use as reference
     const templatePath = join(
       process.cwd(),
-      "public",
-      "files",
-      "templates",
+      "components",
       "jakes_template.tex"
     );
+
+
     const jakeTemplate = await readFile(templatePath, "utf-8");
 
     // Use Gemini to format the resume following Jake's template

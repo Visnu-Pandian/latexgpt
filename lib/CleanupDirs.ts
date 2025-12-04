@@ -1,12 +1,15 @@
 "use server"
 
-import { rm } from "fs/promises";
+import { rm, mkdir } from "fs/promises";
 import { join } from "path";
 
 export async function cleanupDirs() {
   try {
-    const uploadsDir = join(process.cwd(), "public", "files", "uploads");
-    const downloadsDir = join(process.cwd(), "public", "files", "downloads");
+    const uploadsDir = join(process.cwd(), "tmp", "uploads");
+    const downloadsDir = join(process.cwd(), "tmp", "downloads");
+
+    await mkdir(uploadsDir, { recursive: true });
+    await mkdir(downloadsDir, { recursive: true });
 
     // Clean uploads directory
     try {

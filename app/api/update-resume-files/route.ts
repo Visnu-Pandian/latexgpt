@@ -4,7 +4,7 @@ import { join } from "path";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
-const downloadsDir = join(process.cwd(), "public", "files", "downloads");
+const downloadsDir = join(process.cwd(), "tmp", "downloads");
 
 // Helper function to clean LaTeX content (remove markdown code fence backticks)
 const cleanLatexContent = (content: string): string => {
@@ -28,9 +28,7 @@ export async function POST(request: NextRequest) {
     // Read Jake's template for TEX generation
     const templatePath = join(
       process.cwd(),
-      "public",
-      "files",
-      "templates",
+      "components",
       "jakes_template.tex"
     );
     const jakeTemplate = await readFile(templatePath, "utf-8");

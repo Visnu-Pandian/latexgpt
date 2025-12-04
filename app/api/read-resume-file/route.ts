@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { readFile } from "fs/promises";
 import { join } from "path";
 
-const downloadsDir = join(process.cwd(), "public", "files", "downloads");
+const downloadsDir = join(process.cwd(), "tmp", "downloads");
 
 export async function POST(request: NextRequest) {
   try {

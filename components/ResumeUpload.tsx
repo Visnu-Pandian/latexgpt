@@ -16,7 +16,7 @@ export default function ResumeUpload({ onResumeUpload }: ResumeUploadProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isDragActive, setIsDragActive] = useState(false);
 
-  const MAX_FILE_SIZE = 5 * 1024 * 1024; // 20MB
+  const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
   const ALLOWED_TYPES = [
     "text/plain",
     "application/pdf",

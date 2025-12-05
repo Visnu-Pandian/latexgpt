@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Copy, Check, Code } from "lucide-react";
+import { Copy, Check, Code, ExternalLink } from "lucide-react";
 
 interface ResumeDownloadProps {
   resumeContent: string;
@@ -155,6 +155,24 @@ export default function ResumeDownload({
                 </>
               )}
             </Button>
+            <div className="flex gap-3 w-full">
+              <Button
+              variant="outline"
+              className="flex-1 gap-2 border-blue-600 text-blue-200 hover:bg-blue-900"
+              onClick={() => window.open("https://www.overleaf.com/project", "_blank")}
+              >
+                <ExternalLink className="h-4 w-4" />
+                Compile on Overleaf
+              </Button>
+                            <Button
+              variant="outline"
+              className="flex-1 gap-2 border-blue-600 text-blue-200 hover:bg-blue-900"
+              onClick={() => window.open("https://app.crixet.com/", "_blank")}
+              >
+                <ExternalLink className="h-4 w-4" />
+                Compile on CriXet
+              </Button>
+            </div>
           </div>
 
           <div className="rounded-lg border border-blue-700 bg-blue-900/40 p-3 text-xs text-blue-200">

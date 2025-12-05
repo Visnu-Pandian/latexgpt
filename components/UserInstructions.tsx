@@ -132,8 +132,8 @@ export default function UserInstructions() {
             <li className="flex items-start gap-3">
               <span className="text-amber-400 font-bold mt-1">→</span>
               <div>
-                <p className="text-white font-semibold">Compile Locally</p>
-                <p className="text-slate-400 text-sm">Download the .tex file and compile with pdflatex or your favorite LaTeX editor</p>
+                <p className="text-white font-semibold">Compile Online</p>
+                <p className="text-slate-400 text-sm">Download the .tex file and compile online with Overleaf or CriXet!</p>
               </div>
             </li>
           </ul>

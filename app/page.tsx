@@ -43,7 +43,7 @@ export default function Home() {
           
           {/* GitHub Profile Button */}
           <a
-            href={`https://github.com/${gitHubUsername}`}
+            href={`https://github.com/${gitHubUsername}?v=new`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-col items-center gap-2 p-4 rounded-lg hover:bg-slate-800 transition-colors"
